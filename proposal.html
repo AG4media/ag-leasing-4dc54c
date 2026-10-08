@@ -48,7 +48,8 @@ ul.plain li{margin-bottom:5px}
 table{width:100%;border-collapse:collapse;font-size:12.5px;margin:12px 0 20px}
 th{text-align:left;font-weight:500;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 8px 9px 0;border-bottom:1px solid var(--text);vertical-align:bottom}
 td{padding:9px 8px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
-td.r,th.r{text-align:right;padding-right:0}
+td.r,th.r{text-align:right;padding-right:14px}
+td.r:last-child,th.r:last-child{padding-right:0}
 tr.total td{border-bottom:0;border-top:1px solid var(--text);font-weight:600;padding-top:12px}
 table.tight td,table.tight th{padding-top:6px;padding-bottom:6px;font-size:12px}
 .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
@@ -132,8 +133,38 @@ table.tight td,table.tight th{padding-top:6px;padding-bottom:6px;font-size:12px}
 .wa-m.me{background:#005C4B;margin-left:auto}
 .wa-m .wt{display:block;text-align:right;font-size:9.5px;color:#8696A0;margin-top:3px}
 .wa-m .wbtn{margin-top:7px;border-top:1px solid rgba(255,255,255,.08);padding-top:6px;text-align:center;color:#53BDEB;font-weight:500}
-@page{size:A4;margin:0}
-@media print{html{background:#fff}body{padding:0}.page{box-shadow:none;margin:0;min-height:1123px}.cover{min-height:1123px}}
+.price{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin:22px 0 26px}
+.price .box{border-top:1px solid var(--text);padding-top:16px}
+.price .amt{font-family:'Instrument Serif',serif;font-size:44px;line-height:1;letter-spacing:-.01em}
+.price .amt small{font-size:15px;color:var(--muted);font-family:'Inter',sans-serif;font-weight:300;margin-left:8px}
+.price .lbl{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+table.lic th:nth-child(1){width:24%}table.lic th:nth-child(2){width:14%}table.lic th:nth-child(3),table.lic th:nth-child(4){width:15%}
+@page{size:A4;margin:16mm 15mm 20mm 15mm;
+  @bottom-left{content:"Automation Gallery Limited · Software Division";font:9px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8B8F9C;vertical-align:top;padding-top:6mm}
+  @bottom-right{content:"Proposal · DPS Group · Confidential · Page " counter(page);font:9px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8B8F9C;vertical-align:top;padding-top:6mm}}
+@page:first{@bottom-left{content:none}@bottom-right{content:none}}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{background:#fff;width:100%}body{padding:0;font-size:12.5px;line-height:1.55}
+  .doc{width:100%;margin:0}
+  .page{box-shadow:none;margin:0;padding:0 0 4mm;min-height:0;position:static;background:transparent;break-after:auto;page-break-after:auto}
+  .page:has(> .eyebrow){break-before:page;page-break-before:always}
+  .page.cover{width:100%;height:259mm;padding:18mm 16mm;background:var(--ink);display:flex;break-after:page;page-break-after:always;overflow:hidden;position:relative}
+  .foot,#printfoot{display:none!important}
+  h2{font-size:30px;margin-bottom:12px}
+  h2,h3,h4,.note,.eyebrow{break-after:avoid;page-break-after:avoid}
+  .inshort,.rr,table,.opt,.panel,.chat,.wa,.strip,.sig,.price,.day .c,.check,.gl,.toc{break-inside:avoid;page-break-inside:avoid}
+  tr,td,th{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  p.note,li{break-inside:avoid;page-break-inside:avoid}
+  .rr{padding:12px 0}
+  table{font-size:11.5px;margin:8px 0 14px}
+  td{padding:6px 6px 6px 0}
+  .inshort{padding:10px 14px;margin-bottom:14px}
+  .panel,.chat{box-shadow:none}
+  .toc li{padding:7px 0}
+  h3{margin-top:22px}
+}
 </style>
 </head>
 <body>
@@ -145,6 +176,7 @@ table.tight td,table.tight th{padding-top:6px;padding-bottom:6px;font-size:12px}
 <symbol id="i-spark" viewBox="0 0 24 24"><path fill="#1B1408" d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8zM19 16l.9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9z"/></symbol>
 </defs></svg>
 
+<div id="printfoot" style="display:none"><span>Automation Gallery Limited · Software Division</span><span>Proposal · DPS Group · Confidential</span></div>
 <div class="doc">
 
 <!-- COVER -->
@@ -160,7 +192,7 @@ table.tight td,table.tight th{padding-top:6px;padding-bottom:6px;font-size:12px}
     <p class="muted" style="font-size:13px;margin-top:20px;max-width:520px">This document answers every section of your Request for Proposal (RFP). It explains what you asked for, what the platform does, how we deliver it, what it costs, and how we support it.</p>
   </div>
   <div>
-    <div style="font-size:12.5px;line-height:1.8;color:var(--lmuted);margin-bottom:18px"><b style="color:var(--ltext);font-weight:500">Automation Gallery Limited · Licence No. MC 14288 · TRN 105298744100001</b><br>Smart Station, First Floor, Incubator Building, Masdar City, Abu Dhabi, United Arab Emirates<br>+971 58 852 2309 · info@theautomationgallery.com · www.theautomationgallery.com · Contact for this proposal: Midhun E. V. · +971 58 825 0545</div>
+    <div style="font-size:12.5px;line-height:1.8;color:var(--lmuted);margin-bottom:18px"><b style="color:var(--ltext);font-weight:500">Automation Gallery Limited · Licence No. MC 14288 · TRN 105298744100001</b><br>Smart Station, First Floor, Incubator Building, Masdar City, Abu Dhabi, United Arab Emirates<br>+971 58 852 2309 · info@theautomationgallery.com · www.theautomationgallery.com<br>Contact for this proposal: Midhun E. V. · +971 58 825 0545</div>
     <div style="display:flex;justify-content:space-between;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--lmuted)"><span>Prepared for DPS Group, Leasing Department, Doha · 8 October 2026</span><span>Valid until 7 December 2026</span></div>
   </div>
 </section>
@@ -371,8 +403,8 @@ table.tight td,table.tight th{padding-top:6px;padding-bottom:6px;font-size:12px}
   <div class="wa">
     <div class="wa-box"><div class="h"><div class="ava" style="border-radius:50%"><svg><use href="#i-spark"/></svg></div><div><b>DPS Leasing Assistant</b>Business account</div></div>
       <div class="wa-m">Good morning. Briefing for Thursday, 8 October:<br>• Occupancy <b>92.4%</b> · 6 units available<br>• <b>124 cheques</b> due this month, 97 cleared; 1 returned — replacement pending your approval<br>• <b>4 renewals</b> close within 30 days<br>• <b>2 expired documents</b> blocking permits<span class="wt">07:00</span></div>
-      <div class="wa-m me">Approve the Oryx replacement<span class="wt">07:14</span></div>
-      <div class="wa-m">Done — cheque 220982 (QIB, 85,000 QAR, due 12 Oct) approved; register updated; receipt sent to the tenant.<span class="wt">07:14</span></div>
+      <div class="wa-m me">Remind finance about the Oryx replacement<span class="wt">07:14</span></div>
+      <div class="wa-m">Done — reminder sent to finance. Replacement cheque 220982 (QIB, 85,000 QAR, due 12 Oct) is awaiting their approval.<span class="wt">07:14</span></div>
     </div>
     <div class="wa-box ar" dir="rtl" style="font-size:12.5px"><div class="h" style="font-family:Inter"><div class="ava" style="border-radius:50%;background:linear-gradient(135deg,#6EA8FE,#3B5BDB)"></div><div><b>DPS Group · Leasing</b>Business account</div></div>
       <div class="wa-m">مرحباً كرك هاوس،<br>رسوم الخدمة للربع الرابع بقيمة <b>2,432 ر.ق</b> مستحقة بتاريخ 15 أكتوبر.<div class="wbtn">ادفع الآن</div><span class="wt" style="text-align:left">09:00</span></div>
@@ -529,22 +561,14 @@ table.tight td,table.tight th{padding-top:6px;padding-bottom:6px;font-size:12px}
   <h3>How it works</h3>
   <p>You use the platform as a service ("SaaS" — software as a service). We host it in a Microsoft Azure Gulf region (Doha or Dubai), run it, back it up, support it and keep improving it. You do not buy servers, licences or upgrades, and you do not need IT staff to maintain it. The yearly fee does not change for five years, whatever the number of users, properties or documents.</p>
   <h3>Your licensing table (RFP Section 19)</h3>
-  <table>
-    <tr><th>Model</th><th>Available?</th><th class="r">Initial · QAR</th><th class="r">Recurring · QAR / yr</th><th>Notes</th></tr>
+  <table class="lic">
+    <tr><th>Model</th><th>Available?</th><th class="r">Initial (QAR)</th><th class="r">Per year (QAR)</th><th>Notes</th></tr>
     <tr class="rec"><td><b>SaaS subscription</b></td><td>Yes</td><td class="r">30,000</td><td class="r">105,000</td><td>Everything included; fixed for five years.</td></tr>
-    <tr><td>Perpetual licence + AMC</td><td>Not offered</td><td class="r">—</td><td class="r">—</td><td rowspan="3">We provide the platform only as a managed subscription. This is how we guarantee availability, security updates, backups and the AI features at one fixed price, and it means DPS always runs the latest version with nothing to maintain.</td></tr>
-    <tr><td>Private cloud</td><td>Not offered</td><td class="r">—</td><td class="r">—</td></tr>
-    <tr><td>On-premise</td><td>Not offered</td><td class="r">—</td><td class="r">—</td></tr>
+    <tr><td>Perpetual licence + AMC</td><td>Not offered</td><td class="r">—</td><td class="r">—</td><td>See note below.</td></tr>
+    <tr><td>Private cloud</td><td>Not offered</td><td class="r">—</td><td class="r">—</td><td>See note below.</td></tr>
+    <tr><td>On-premise</td><td>Not offered</td><td class="r">—</td><td class="r">—</td><td>See note below.</td></tr>
   </table>
-  <h3>What is not included</h3>
-  <ul class="plain">
-    <li><b>Third-party charges, passed through at cost:</b> WhatsApp message fees, SMS, payment-gateway transaction fees, Power BI licences, and the e-signature provider's fees — together under about 6,000 QAR a year at your current size, excluding Power BI.</li>
-    <li><b>Loading your existing lease contracts</b> — scanning, uploading and checking the extracted terms. The platform provides the tools; the work is yours, or quoted separately if you want us to do it.</li>
-    <li><b>Integrations beyond one accounting/ERP system and one CAFM system</b>, specially built connectors, and systems without a supported interface — quoted before any work starts (section 02, RFP Section 15).</li>
-    <li><b>Anything outside the scope described in sections 02 to 06</b> — additional modules, further integrations, custom development, or services performed on DPS's behalf — quoted separately before work starts (section 10).</li>
-    <li><b>On-site sessions</b> — the engagement is delivered online; visits can be arranged on request.</li>
-        <li><b>Taxes</b> that may apply under Qatari law.</li>
-  </ul>
+  <p class="note">We provide the platform only as a managed subscription. This is how we guarantee availability, security updates, backups and the AI features at one fixed price, and it means DPS always runs the latest version with nothing to maintain.</p>
   <h3>If the subscription ends (RFP Section 26)</h3>
   <p>Either side may end the agreement from the second year with 90 days' written notice. During those 90 days everything keeps working. At the end you receive a complete export of all your data (Excel, CSV and PDF), free of charge. If you wish, we keep a read-only copy available for 12 months for 12,000 QAR.</p>
   <h3>Payment and other terms</h3>
@@ -590,25 +614,25 @@ table.tight td,table.tight th{padding-top:6px;padding-bottom:6px;font-size:12px}
   <div class="inshort"><b>In short</b>Your RFP asks every supplier to mark each of 19 areas as C (fully compliant), PC (partly), NC (not compliant), CU (needs custom development) or 3P (needs a third-party product). We are fully compliant on 18 of 19 with standard modules; item 18 (perpetual licence) is not offered because we provide the platform as a subscription. Two integration areas also depend on your other systems' suppliers and are therefore marked "3P" as well.</div>
   <table class="tight">
     <tr><th style="width:30px">#</th><th>Area (from your RFP)</th><th style="width:66px">Status</th><th>Our module</th><th style="width:84px">Extra cost</th><th style="width:78px">Lead time</th><th>Comment</th></tr>
-    <tr><td>1</td><td>Core leasing</td><td><span class="pill c">C</span></td><td>Portfolio · Lease Administration</td><td>Included</td><td>In the 26-week plan</td><td>Floor plans, statuses, history</td></tr>
-    <tr><td>2</td><td>Leasing CRM / deal flow</td><td><span class="pill c">C</span></td><td>Leasing CRM</td><td>Included</td><td>In the 26-week plan</td><td>Brokers and commissions included</td></tr>
-    <tr><td>3</td><td>Lease administration</td><td><span class="pill c">C</span></td><td>Lease Administration</td><td>Included</td><td>In the 26-week plan</td><td>Charges, increases, options, attestation, e-signature</td></tr>
-    <tr><td>4</td><td>AI / lease reading</td><td><span class="pill c">C</span></td><td>Lease AI</td><td>Included</td><td>In the 26-week plan</td><td>Human review; disclosure in section 06</td></tr>
-    <tr><td>5</td><td>Revenue / arrears</td><td><span class="pill c">C</span></td><td>Billing</td><td>Included</td><td>In the 26-week plan</td><td>Turnover rent, leakage reports</td></tr>
-    <tr><td>6</td><td>Cheques / PDC</td><td><span class="pill c">C</span></td><td>Cheque Register</td><td>Included</td><td>In the 26-week plan</td><td>Yearly → monthly replacement workflow</td></tr>
-    <tr><td>7</td><td>Tenant documents</td><td><span class="pill c">C</span></td><td>Compliance</td><td>Included</td><td>In the 26-week plan</td><td>90/60/30/15-day alerts, blocking rules</td></tr>
-    <tr><td>8</td><td>Tenant portal / mobile</td><td><span class="pill c">C</span></td><td>Tenant Portal</td><td>Included</td><td>In the 26-week plan</td><td>Responsive web app, installable on any phone; Arabic/English</td></tr>
-    <tr><td>9</td><td>Work permits / fit-out</td><td><span class="pill c">C</span></td><td>Requests</td><td>Included</td><td>In the 26-week plan</td><td>Any request type can be added</td></tr>
-    <tr><td>10</td><td>Renewals</td><td><span class="pill c">C</span></td><td>Renewals</td><td>Included</td><td>In the 26-week plan</td><td>Expiry bands, health scores</td></tr>
-    <tr><td>11</td><td>Handover / termination</td><td><span class="pill c">C</span></td><td>Lifecycle</td><td>Included</td><td>In the 26-week plan</td><td>Mobile checklists, deposits</td></tr>
-    <tr><td>12</td><td>Advanced CRE revenue</td><td><span class="pill c">C</span></td><td>Analytics</td><td>Included</td><td>In the 26-week plan</td><td>WALE, service-charge recovery, scenarios</td></tr>
-    <tr><td>13</td><td>BI / analytics</td><td><span class="pill c">C</span></td><td>Analytics · Power BI connector</td><td>Included</td><td>In the 26-week plan</td><td>Power BI licences are yours</td></tr>
-    <tr><td>14</td><td>CAFM / property integration</td><td><span class="pill c">C</span> <span class="pill p3">3P</span></td><td>Integrations</td><td>Included*</td><td>In the 26-week plan</td><td>*Subject to availability of supported APIs/interfaces; one CAFM connection by API or file exchange; meters / access control where the supplier provides an interface</td></tr>
-    <tr><td>15</td><td>Accounting / ERP integration</td><td><span class="pill c">C</span> <span class="pill p3">3P</span></td><td>Integrations</td><td>Included*</td><td>In the 26-week plan</td><td>*Subject to availability of supported APIs/interfaces; one accounting/ERP connection by API or file exchange; a specially built connector is quoted before work starts</td></tr>
-    <tr><td>16</td><td>Security</td><td><span class="pill c">C</span></td><td>Platform</td><td>Included</td><td>In the 26-week plan</td><td>See section 06</td></tr>
-    <tr><td>17</td><td>Data migration</td><td><span class="pill c">C</span></td><td>Migration toolkit</td><td>30,000 once</td><td>In the 26-week plan</td><td>See section 04</td></tr>
+    <tr><td>1</td><td>Core leasing</td><td><span class="pill c">C</span></td><td>Portfolio · Lease Administration</td><td>Included</td><td>26 weeks</td><td>Floor plans, statuses, history</td></tr>
+    <tr><td>2</td><td>Leasing CRM / deal flow</td><td><span class="pill c">C</span></td><td>Leasing CRM</td><td>Included</td><td>26 weeks</td><td>Brokers and commissions included</td></tr>
+    <tr><td>3</td><td>Lease administration</td><td><span class="pill c">C</span></td><td>Lease Administration</td><td>Included</td><td>26 weeks</td><td>Charges, increases, options, attestation, e-signature</td></tr>
+    <tr><td>4</td><td>AI / lease reading</td><td><span class="pill c">C</span></td><td>Lease AI</td><td>Included</td><td>26 weeks</td><td>Human review; disclosure in section 06</td></tr>
+    <tr><td>5</td><td>Revenue / arrears</td><td><span class="pill c">C</span></td><td>Billing</td><td>Included</td><td>26 weeks</td><td>Turnover rent, leakage reports</td></tr>
+    <tr><td>6</td><td>Cheques / PDC</td><td><span class="pill c">C</span></td><td>Cheque Register</td><td>Included</td><td>26 weeks</td><td>Yearly → monthly replacement workflow</td></tr>
+    <tr><td>7</td><td>Tenant documents</td><td><span class="pill c">C</span></td><td>Compliance</td><td>Included</td><td>26 weeks</td><td>90/60/30/15-day alerts, blocking rules</td></tr>
+    <tr><td>8</td><td>Tenant portal / mobile</td><td><span class="pill c">C</span></td><td>Tenant Portal</td><td>Included</td><td>26 weeks</td><td>Responsive web app, installable on any phone; Arabic/English</td></tr>
+    <tr><td>9</td><td>Work permits / fit-out</td><td><span class="pill c">C</span></td><td>Requests</td><td>Included</td><td>26 weeks</td><td>Any request type can be added</td></tr>
+    <tr><td>10</td><td>Renewals</td><td><span class="pill c">C</span></td><td>Renewals</td><td>Included</td><td>26 weeks</td><td>Expiry bands, health scores</td></tr>
+    <tr><td>11</td><td>Handover / termination</td><td><span class="pill c">C</span></td><td>Lifecycle</td><td>Included</td><td>26 weeks</td><td>Mobile checklists, deposits</td></tr>
+    <tr><td>12</td><td>Advanced CRE revenue</td><td><span class="pill c">C</span></td><td>Analytics</td><td>Included</td><td>26 weeks</td><td>WALE, service-charge recovery, scenarios</td></tr>
+    <tr><td>13</td><td>BI / analytics</td><td><span class="pill c">C</span></td><td>Analytics · Power BI connector</td><td>Included</td><td>26 weeks</td><td>Power BI licences are yours</td></tr>
+    <tr><td>14</td><td>CAFM / property integration</td><td><span class="pill c">C</span> <span class="pill p3">3P</span></td><td>Integrations</td><td>Included*</td><td>26 weeks</td><td>*Subject to availability of supported APIs/interfaces; one CAFM connection by API or file exchange; meters / access control where the supplier provides an interface</td></tr>
+    <tr><td>15</td><td>Accounting / ERP integration</td><td><span class="pill c">C</span> <span class="pill p3">3P</span></td><td>Integrations</td><td>Included*</td><td>26 weeks</td><td>*Subject to availability of supported APIs/interfaces; one accounting/ERP connection by API or file exchange; a specially built connector is quoted before work starts</td></tr>
+    <tr><td>16</td><td>Security</td><td><span class="pill c">C</span></td><td>Platform</td><td>Included</td><td>26 weeks</td><td>See section 06</td></tr>
+    <tr><td>17</td><td>Data migration</td><td><span class="pill c">C</span></td><td>Migration toolkit</td><td>30,000 once</td><td>26 weeks</td><td>See section 04</td></tr>
     <tr><td>18</td><td>Perpetual licence</td><td><span class="pill p3">Not offered</span></td><td>—</td><td>—</td><td>—</td><td>We offer the platform as a subscription only; see section 07</td></tr>
-    <tr><td>19</td><td>AMC / upgrades</td><td><span class="pill c">C</span></td><td>Included in subscription</td><td>Included</td><td>In the 26-week plan</td><td>All updates and upgrades, released regularly</td></tr>
+    <tr><td>19</td><td>AMC / upgrades</td><td><span class="pill c">C</span></td><td>Included in subscription</td><td>Included</td><td>26 weeks</td><td>All updates and upgrades, released regularly</td></tr>
   </table>
   <h3>Hosting options (RFP Section 18)</h3>
   <p class="note">We provide the platform as a hosted subscription in a Microsoft Azure Gulf region (Doha or Dubai), with a separate database and document store for DPS that no other customer shares. On-premise and private-cloud deployment are not offered (see section 07).</p>
