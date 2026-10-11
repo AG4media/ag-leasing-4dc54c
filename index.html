@@ -382,7 +382,7 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
 <section class="slide paper" style="padding:70px 90px">
   <div class="head" style="margin-bottom:26px">
     <div><div class="eyebrow" style="margin-bottom:12px">Your requirement list · RFP Sections 2 – 24</div><h2 class="serif">Everything in the RFP, answered.</h2></div>
-    <p style="color:var(--dark-muted)">Each area of your compliance matrix maps to a standard module of the platform. No customisation surcharge; the full matrix is in the written proposal.</p>
+    <p style="color:var(--dark-muted)">Each area of your compliance matrix maps to a standard module of the platform. No customisation needed for the areas in your matrix; the full matrix is in the written proposal.</p>
   </div>
   <div class="req">
     <div class="rq"><span class="n">03</span><div><b>Property, building &amp; space inventory</b><small>Portfolio module · hierarchy, statuses, floor plans, unit history</small></div></div>
@@ -1002,7 +1002,7 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
     <div class="core">
       <h4>DPS Leasing Platform · standard modules</h4>
       <div class="mods"><span>Portfolio &amp; units</span><span>Leasing CRM</span><span>Lease administration</span><span>Billing &amp; arrears</span><span>Cheques &amp; PDC</span><span>Compliance documents</span><span>Tenant portal &amp; mobile</span><span>Requests &amp; permits</span><span>Renewals &amp; lifecycle</span><span>Analytics &amp; BI</span><span>Lease AI &amp; assistant</span><span>Workflow engine</span></div>
-      <div style="margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.5">One accounting/ERP and one CAFM connection included, subject to the availability of supported APIs and interfaces — by API where available, otherwise by scheduled file exchange. Open REST API and webhooks, Power BI connector, e-signature and document-management connectors for everything else.</div>
+      <div style="margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.5">One accounting/ERP and one CAFM connection included, subject to the availability of supported APIs and interfaces — by API where available, otherwise by scheduled file exchange. Power BI connector and e-signature included. Open REST API and webhooks for everything else; further connections are quoted before work starts.</div>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px">
       <div class="abox"><b>Documents &amp; signing</b><div>E-signature via the provider DPS selects</div><div>Document management system</div><div>Attestation reference tracking</div></div>
@@ -1058,7 +1058,7 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
 </section>
 
 <!-- 20 INVESTMENT -->
-<section class="slide vc">
+<section class="slide vc" data-nomark="1">
   <div class="eyebrow">Investment · one subscription, everything included <span class="ref">RFP Sections 19 · 24 · 26</span></div>
   <h2 class="serif" style="max-width:900px">Simple, fixed, and all-inclusive.</h2>
   <div class="price" style="margin-top:44px">
@@ -1075,8 +1075,12 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
   </div>
   <div class="rule" style="margin:34px 0 18px"></div>
   <div class="grid2" style="gap:50px">
-    <p class="muted" style="font-size:13.5px;line-height:1.6"><b style="color:var(--text);font-weight:500">Your licensing table (RFP Section 19):</b> SaaS subscription — offered, above. Perpetual licence, private cloud and on-premise — not offered. We operate the platform as a managed service so DPS always runs the latest version with nothing to maintain.</p>
-    <p class="muted" style="font-size:13.5px;line-height:1.6"><b style="color:var(--text);font-weight:500">Terms:</b> QAR, valid until 10 December 2026 · year one: 50% on signing, 50% at go-live or month six (whichever first); then yearly on each anniversary; 30 days to pay · no increases for five years · extra staff users 1,200 QAR per year · 30,000 QAR set-up recovery fee only if the agreement ends after year one · taxes, including withholding, borne by DPS · if the subscription ends, all data is returned. <b style="color:var(--text);font-weight:500">Not included:</b> third-party fees (at cost); existing-file scanning and other extra work at 2,500 QAR per person-day online or 3,500 on site, or by separate proposal.</p>
+    <p class="muted" style="font-size:14px;line-height:1.6"><b style="color:var(--text);font-weight:500">Your licensing table (RFP Section 19):</b> SaaS subscription — offered, above. Perpetual licence, private cloud and on-premise — not offered. We operate the platform as a managed service so DPS always runs the latest version with nothing to maintain. Prices in QAR, valid until 10 December 2026; taxes, including withholding, borne by DPS.</p>
+    <div class="muted" style="font-size:14px;line-height:1.55">
+      <div><b style="color:var(--text);font-weight:500">Payment:</b> year one 50,000 QAR on signing + 50,000 QAR at go-live or end of month six from kick‑off (whichever first); then 100,000 QAR on each anniversary of kick‑off; 30 days to pay.</div>
+      <div style="margin-top:8px"><b style="color:var(--text);font-weight:500">Term:</b> no increase for five years · either side may end at the end of any contract year with 90 days' notice · 30,000 QAR set-up recovery fee only if DPS ends the agreement at the end of year one.</div>
+      <div style="margin-top:8px"><b style="color:var(--text);font-weight:500">Extras, only with DPS approval:</b> staff users above 50 at 1,200 QAR a year · other work at 2,500 QAR per person-day online or 3,500 QAR on site + travel, or by separate proposal · scanning existing files only if done by us (free with the Lease AI) · third-party fees at cost.</div>
+    </div>
   </div>
 </section>
 
@@ -1115,7 +1119,8 @@ const slides=[...document.querySelectorAll('.slide')];let i=0;
 function show(n){i=(n+slides.length)%slides.length;slides.forEach((s,k)=>s.classList.toggle('on',k===i));
   document.getElementById('counter').textContent=String(i+1).padStart(2,'0')+' / '+slides.length;
   document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
-  countUp(slides[i]); if(slides[i].id==='ai-slide') startChat();}
+  countUp(slides[i]); if(slides[i].id==='ai-slide') startChat();
+  document.getElementById('mark').style.visibility=slides[i].dataset.nomark?'hidden':'visible';}
 function fit(){const s=Math.min(innerWidth/1600,innerHeight/900);document.getElementById('stage').style.transform=`translate(-50%,-50%) scale(${s})`;}
 addEventListener('resize',fit);fit();
 document.getElementById('next').onclick=()=>show(i+1);document.getElementById('prev').onclick=()=>show(i-1);
